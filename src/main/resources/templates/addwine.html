@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+    <title>Add a wine</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    
+</head>
+<style>
+.container{
+	text-align: center;
+	padding-top: 250px;
+	padding-bottom: 250px;
+	
+	position: center;
+	max-width: 50%;
+	max-height: 100%;
+   }
+   
+  
+
+
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #000000;
+  
+}
+
+.jumbotron h1{
+	text-align: center;
+}
+
+.jumbotron p{
+	text-align: center;
+
+}
+
+.teksti h3{
+
+}
+
+
+.bg {
+
+  background-image: url("wachau.jpg");
+  background-color: #000000;
+  
+
+  height: 100%; 
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+
+
+</style>
+<body>
+<div class="bg">
+<div class="container">
+<div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            
+            <li role="presentation"><a href="/cellar">Back to the winelist</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Add a wine</h3>
+      </div>
+      
+	
+   
+   <form th:object="${wine}" th:action="@{save}" action="#" method="post">
+   <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>Producer: </h4>
+          <p><label for="producer"></label>
+			<input type="text" placeholder="Who made your wine..." id="producer" th:field="*{producer}" />	</p>
+
+          <h4>Name: </h4>
+          <p><label for="name"></label>
+			<input type="text" placeholder="Name of the wine..." id="name" th:field="*{name}" /></p>
+
+          <h4>Vintage: </h4>
+          <p><label for="vintage"></label>
+			<input type="text" id="vintage" th:field="*{vintage}" /></p>
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Denomination of origin: </h4>
+          <p><label for="denomination"></label>
+			<input type="text" id="denomination" placeholder="Which region is it from..." th:field="*{denomination}" /></p>
+
+          <h4>Country: </h4>
+          <p><label for="country"></label>
+			<input type="text" id="country" placeholder="Which country is it from..." th:field="*{country}" /></p>
+
+          <h4>Grapes: </h4>
+          <p><label for="grapes"></label>
+			<input type="text" id="grapes" placeholder="What's in the bottle..." th:field="*{grapes}" /></p>
+        </div>
+        <div class="form-row">
+	<div class="form-group col-lg-12">			
+			<label for="typlist">Type</label>
+			<select id="typlist" th:field="*{type}" class="form-control">
+       		<option th:each="type: ${types}" th:value="${type.typeid}" th:text="${type.name}"></option></select>
+    		</div>    
+    		</div>
+    		
+   
+      </div>	
+         		<input type="submit" value="Save" class="btn btn-success"></input>
+      		
+	
+	
+		</form>
+    		</div>
+    		</div>
+
+</body>
+</html>
