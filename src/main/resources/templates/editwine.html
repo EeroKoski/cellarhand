@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 
-    <title>Add a wine</title>
+    <title>Edit a bottle</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     
@@ -46,7 +46,7 @@ body, html {
 
 .bg {
 
-  background-image: url("wachau.jpg");
+  background-image: url("/wachau.jpg");
   background-color: #000000;
   
 
@@ -55,10 +55,6 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.droppi{
-max-width: 100px;
 }
 
 
@@ -76,14 +72,17 @@ max-width: 100px;
             <li role="presentation"><a href="/cellar">Back to the winelist</a></li>
           </ul>
         </nav>
-        <h3 class="text-muted">Add a wine</h3>
+        <h3 class="text-muted">Edit a bottle</h3>
       </div>
       
 	
    
-   <form th:object="${wine}" th:action="@{save}" action="#" method="post">
+   <form th:object="${wine}" th:action="@{../save}" action="#" method="post">
+   
    <div class="row marketing">
         <div class="col-lg-6">
+         <input type="hidden" id="id" th:field="*{id}" />
+        
           <h4>Producer: </h4>
           <p><label for="producer"></label>
 			<input type="text" placeholder="Who made your wine..." id="producer" th:field="*{producer}" />	</p>
@@ -97,12 +96,8 @@ max-width: 100px;
           <h4>Vintage: </h4>
           <p><label for="vintage"></label>
 			<input type="text" id="vintage" th:field="*{vintage}" /></p>
-			<div th:if="${#fields.hasErrors('vintage')}" th:errors="*{vintage}">Vintage Error</div>
-			
-			<h4>Type: </h4>
-			<select class=droppi id="typlist" th:field="*{type}">
-       		<option th:each="type: ${types}" th:value="${type.typeid}" th:text="${type.name}"></option></select>
-    		
+        	<div th:if="${#fields.hasErrors('vintage')}" th:errors="*{vintage}">Vintage Error</div>
+        	
         </div>
 
         <div class="col-lg-6">
@@ -114,28 +109,33 @@ max-width: 100px;
 			<h4>Region: </h4>
           <p><label for="region"></label>
 			<input type="text" id="region" placeholder="What's the region..." th:field="*{region}" /></p>
-			<div th:if="${#fields.hasErrors('region')}" th:errors="*{region}">Region Error</div>
+			<div th:if="${#fields.hasErrors('region')}" th:errors="region">Region Error</div>
 
 
           <h4>Country: </h4>
           <p><label for="country"></label>
 			<input type="text" id="country" placeholder="Which country is it from..." th:field="*{country}" /></p>
-			<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Country Error</div>
-
+			<div th:if="${#fields.hasErrors('country')}" th:errors="country">Country Error</div>
 
           <h4>Grapes: </h4>
           <p><label for="grapes"></label>
 			<input type="text" id="grapes" placeholder="What's in the bottle..." th:field="*{grapes}" /></p>
-			<div th:if="${#fields.hasErrors('grapes')}" th:errors="*{grapes}">Grapes Error</div>
-			
+        	<div th:if="${#fields.hasErrors('grapes')}" th:errors="grapes">Grapes Error</div>
+        
         </div>
-        		
-			
+        <div class="form-row">
+	<div class="form-group col-lg-12">			
+			<label for="typlist">Type</label>
+			<select id="typlist" th:field="*{type}" class="form-control">
+       		<option th:each="type: ${types}" th:value="${type.typeid}" th:text="${type.name}"></option></select>
+    		</div>    
+    		</div>
     		
    
       </div>	
-         		<input type="submit" value="Put a bottle into the cellar" class="btn btn-success"></input>
-      		
+         		<input type="submit" value="Save" class="btn btn-success"></input>
+         		
+      			
 	
 	
 		</form>

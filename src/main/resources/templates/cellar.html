@@ -4,7 +4,7 @@
 
     <title>Winelist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     
 </head>
 <style>
@@ -91,12 +91,13 @@ body, html {
 		<th scope="col">Producer</th>
 		<th scope="col">Name</th>
 		<th scope="col">Vintage</th>
-		<th scope="col">Denomination of origin</th>
+		<th scope="col">Appellation</th>
+		<th scope="col">Region</th>
 		<th scope="col">Country</th>
 		<th scope="col">Grapes</th>
 		<th scope="col">Type</th>
 		
-		<th scope="col">Drink</th>
+		<th sec:authorize="hasRole('ADMIN')"scope="col">Drink</th>
 		<th scope="col">Edit</th>
 		
 		
@@ -108,14 +109,14 @@ body, html {
 			<td th:text="${wine.producer}"></td>
 			<td th:text="${wine.name}"></td>
 			<td th:text="${wine.vintage}"></td>
-			<td th:text="${wine.denomination}"></td>
+			<td th:text="${wine.appellation}"></td>
+			<td th:text="${wine.region}"></td>
 			<td th:text="${wine.country}"></td>
 			<td th:text="${wine.grapes}"></td>
 			<td th:text="${wine.type.name}"></td>
 			
 			
- 				
- 			<td><a th:href="@{/delete/{id}(id=${wine.id})}" class="btn btn-danger">Drink</a></td> 
+ 			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${wine.id})}" class="btn btn-danger">Drink</a></td>
  			<td><a th:href="@{/edit/{id}(id=${wine.id})}" class="btn btn-success">Edit</a></td>    		
 		</tr>	
 	</table></div></div></div></body></html>

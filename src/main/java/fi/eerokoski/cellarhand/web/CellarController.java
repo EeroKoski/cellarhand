@@ -1,6 +1,7 @@
 package fi.eerokoski.cellarhand.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,18 +49,23 @@ public class CellarController {
         return "redirect:cellar";
 	}
         
-    @RequestMapping(value = "/drink/{id}", method = RequestMethod.GET)
-    public String drinkWine(@PathVariable("id") Long wineId, Model model) {
-    	wirepo.deleteById(wineId);
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ADMIN')")
+    public String deleteWine(@PathVariable("id") Long Id, Model model) {
+    	wirepo.deleteById(Id);
         return "redirect:../cellar";
     }
+    
+    
     
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editWine(@PathVariable("id") Long Id, Model model){
     	model.addAttribute("wine", wirepo.findById(Id));
-		model.addAttribute("type", tyrepo.findAll());
+		model.addAttribute("types", tyrepo.findAll());
         return "editwine";
     }         
+    
+    
 	
 	
 }
