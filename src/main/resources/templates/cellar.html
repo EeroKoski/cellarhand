@@ -119,4 +119,29 @@ body, html {
  			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${wine.id})}" class="btn btn-danger">Drink</a></td>
  			<td><a th:href="@{/edit/{id}(id=${wine.id})}" class="btn btn-success">Edit</a></td>    		
 		</tr>	
-	</table></div></div></div></body></html>
+	</table></div></div>
+
+
+<div th:each="label : ${labels}">	
+	<p th:text="${label}"/>
+	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" th:src="@{${'/uploadfolder/IMG_20210329_220655.jpg'}}" alt="First slide">
+    </div>
+    <div class="carousel-item" th:each="photo :${label.photos}">
+      <img class="d-block w-100" src="@{${'uploadfolder/' + photo.fileName}}" alt="Second slide">
+    </div>
+
+    </div>
+  </div>
+</div>
+	</div>
+	
+	
+	</div>
+	
+	
+	
+	
+	</body></html>

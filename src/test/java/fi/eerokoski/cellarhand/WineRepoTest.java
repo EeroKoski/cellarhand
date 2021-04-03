@@ -32,7 +32,7 @@ public class WineRepoTest {
 	
 	@Test
 	public void createNewWine() {
-		Wine wine = new Wine("Sclavos", "Orgion", "2018", "IGP Aenos", "Slopes of Aenos", "Greece", "Mavrodaphne", new Type("Red"));
+		Wine wine = new Wine("Sclavos", "Orgion", "2018", "IGP Aenos", "Slopes of Aenos", "Greece", "Mavrodaphne", new Type("Punainen"));
 		wirepo.save(wine);
 		assertThat(wine.getId()).isNotNull();
 	}

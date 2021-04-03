@@ -11,6 +11,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 @Entity
@@ -32,11 +34,14 @@ public class Wine {
 	@NotNull(message="It was made of grapes, right?")
 	private String grapes;
 	@NotNull(message="When was it made?")
+	@Min(value = 1500, message=("Not that old?"))
+	@Max(value = 2021, message="Not that young?")
 	private String vintage;
 	
 	@ManyToOne
 	@JoinColumn(name = "typeid")
 	@Valid
+	@JsonManagedReference
 	private Type type;
 
 	public Wine() {

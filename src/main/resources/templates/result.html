@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Validation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+.container{
+	
+	max-width: 75%;
+	max-height: 75%;
+   }
+   
+   .sipuli {
+   	overflow: scroll;
+   	max-width: 100%;
+	max-height: 500px;
+   
+   }
+
+
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #000000;
+  
+}
+
+.jumbotron h1{
+	text-align: center;
+}
+
+.jumbotron p{
+	text-align: center;
+
+}
+
+.teksti h3{
+
+}
+
+
+.bg {
+
+  background-image: url("wachau.jpg");
+  background-color: #000000;
+  
+
+  height: 100%; 
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+</style>
+<body>
+	<h1>Addition succesful</h1>
+    <p th:text="'id: ' + ${wine.id}" />
+    <p th:text="'message: ' + ${wine.producer}" />
+    <p th:text="'message: ' + ${wine.name}" />
+    <p th:text="'message: ' + ${wine.vintage}" />
+    <p th:text="'message: ' + ${wine.appellation}" />
+    <p th:text="'message: ' + ${wine.region}" />
+    <p th:text="'message: ' + ${wine.country}" />
+    <p th:text="'message: ' + ${wine.grapes}" />
+    <p th:text="'message: ' + ${wine.type.name}" />
+    
+    <a href="/add">Submit another wine</a>
+</body>
+</html>

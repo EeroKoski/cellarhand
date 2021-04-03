@@ -10,7 +10,7 @@
 <style>
 .container{
 	text-align: center;
-	padding-top: 250px;
+	padding-top: 150px;
 	padding-bottom: 250px;
 	
 	position: center;
@@ -128,7 +128,14 @@ max-width: 100px;
 			<input type="text" id="grapes" placeholder="What's in the bottle..." th:field="*{grapes}" /></p>
 			<div th:if="${#fields.hasErrors('grapes')}" th:errors="*{grapes}">Grapes Error</div>
 			
+			
+			
         </div>
+        <div>
+        <h4>Label photo: </h4>
+			<input type="file" name="file" />        
+		</div>
+			
         		
 			
     		
